@@ -99,6 +99,76 @@ undefined
         </section>
 
         <section>
+          <h2>JavaScript Basics</h2>
+          <h3>Super Quick Summary</h3>
+          <pre class='fragment'><code>/* Variables  */ var one = 1;</code></pre>
+          <pre class='fragment'><code>/* Objects    */ var obj = {}; obj.property = one;</code></pre>
+          <pre class='fragment'><code>/* Arrays     */ var arr = [one, obj];</code></pre>
+          <pre class='fragment'><code>/* Primatives */ var prims = [-1.3, "Str", true, null, undefined]; </code></pre>
+          <pre class='fragment'><code>/* Undefined  */ var v; if (v === undefined) { console.log("Careful"); } </code></pre>
+          <pre class='fragment'><code>/* typeof     */ if (typeof v === 'undefined') { console.log("Good"); } </code></pre>
+          <pre class='fragment'><code>/* Accessing  */ console.log(arr[1]['property']);</code></pre>
+          <pre class='fragment'><code>/* Concat     */ console.log("Join " + val + " and " + 3.03);                    // Fix code colouring </code></pre>
+          <pre class='fragment'><code>/* Functions  */ function myFunc(param) { console.log("Got: "+param); }</code></pre>
+          <pre class='fragment'><code>/* 1st class  */ function seven(fn) { fn(7); }; seven(myFunc);</code></pre>
+          <pre class='fragment'><code>/* Anonymous  */ seven(function(nr) { console.log(nr * nr); }); </code></pre>
+        </section>
+
+        <section>
+          <h2>JavaScript Basics</h2>
+          <h3>Classes</h3>
+          <pre><code>function Animal() {}</code></pre>
+          <pre class='fragment'><code>Animal.prototype.getType = function() {
+  return 'an animal';
+}</code></pre>
+          <pre class='fragment'><code>Animal.prototype.announceSelf = function() {
+  console.log("I am "+this.getType());
+}</code></pre>
+          <pre class='fragment'><code>var a = new Animal();
+a.announceSelf();</code></pre>
+          <pre class='fragment'><code>function Cat() {}</code></pre>
+          <pre class='fragment'><code>Cat.prototype = new Animal();</code></pre>
+          <pre class='fragment'><code>Cat.prototype.getType = function() {
+  return 'a cat';
+}</code></pre>
+          <pre class='fragment'><code>var c = new Cat();
+c.announceSelf();</code></pre>
+        </section>
+
+        <section>
+          <h2>JavaScript Basics</h2>
+          <h3>Scope and closures</h3>
+          <pre><code>var a = 1;
+
+function logA() {
+  console.log("a = "+a);
+  var b = a;
+}
+
+logA(); // a = 1</code></pre>
+          <pre class='fragment'><code>function logB() {
+  console.log("typeof b = "+(typeof b));
+  a = 3;
+}
+
+logB(); // typeof b = undefined
+logA(); // a = 3</code></pre>
+          <pre class='fragment'><code>(function() {
+  var c = 5;
+  function logC() {
+    console.log("c = "+c);
+  }
+
+  logC(); // c = 5
+
+  this.exportedLogC = logC;
+})();</code></pre>
+
+          <pre class='fragment'><code>exportedLogC(); // c = 5
+console.log(typeof c); // undefined</code></pre>
+        </section>
+
+        <section>
           <h2>Hello Internet!</h2>
           <p>Enter the following into <code>server.js</code></p>
           <p><pre><code>var http = require('http');
