@@ -190,6 +190,32 @@ var fs = require('fs');
 function listener(request, response) {
   function send(err, contents) {
     if (err) {
+      console.error(err); // DON'T DO THIS IN PRODUCTION
+      response.writeHead(500);
+      response.end("ERROR");
+    } else {
+      response.end(contents);
+    }
+  }
+  fs.readFile(require.main.filename, send);
+}
+
+var server = http.createServer(listener);
+server.listen(1337);</code></pre></p>
+          <p class='fragment'>But this means if we have a traffic surge we'll get <code>EMFILE</code> - too many files open.</p>
+        </section>
+
+        <section>
+          <h2><span style='color:green'>Graceful</span> Exhibitionist</h2>
+          <p>Let's <span style='color:green'>gracefully</span> share our own source code with the world:</p>
+          <p><pre><code>var http = require('http');
+//var fs = require('fs');
+var fs = require('graceful-fs'); // npm install graceful-fs
+
+function listener(request, response) {
+  function send(err, contents) {
+    if (err) {
+      console.error(err); // DON'T DO THIS IN PRODUCTION
       response.writeHead(500);
       response.end("ERROR");
     } else {
@@ -207,7 +233,7 @@ server.listen(1337);</code></pre></p>
         <section>
           <h2>Preloading</h2>
 <p><pre><code>var http = require('http');
-var fs = require('fs');
+var fs = require('graceful-fs');
 var fileContents;
 
 function listener(request, response) {
@@ -264,11 +290,114 @@ Percentage of the requests served within a certain time (ms)
         </section>
 
         <section>
-          <h2>Core modules</h2>
+          <h2>The Runloop</h2>
+          <p>Largest waste of time in code is waiting on IO. Here are the options we have for dealing with this:</p>
+          <ul>
+            <li class='fragment'>Synchronous (procedural)</li>
+            <li class='fragment'>Fork</li>
+            <li class='fragment'>Threads</li>
+            <li class='fragment'>Events (callbacks)</li>
+          </ul>
+          <aside class='notes'>
+            Synchronous: easy; slow, queues<br />
+            Fork: easy; doesn't scale.<br />
+            Threads: easy, nicer than fork; complicated access to shared resources.<br />
+          </aside>
         </section>
 
         <section>
-          <h2>npm</h2>
+          <h2>Threads vs events</h2>
+          <p class='fragment'><img src="img/nginx-apache-memory.png" /></p>
+          <p class='fragment'>Source: <a href="http://blog.webfaction.com/2008/12/a-little-holiday-present-10000-reqssec-with-nginx-2/">http://blog.webfaction.com/2008/12/a-little-holiday-present-10000-reqssec-with-nginx-2/</a></p>
+        </section>
+
+        <section>
+          <h2>Single thread for JavaScript</h2>
+          <p class='fragment'>Your code should request work, optional callback.</p>
+          <pre class='fragment'><code>var http = require('http');
+function listener(request, response) {/* ... */}
+var server = http.createServer(listener /* <- callback */);
+server.listen(1337); /* <- request work */</code></pre>
+          <p class='fragment'>Background thread pool handles work.</p>
+          <pre class='fragment'><code>GET / HTTP/1.0</code></pre>
+          <p class='fragment'>Node triggers callback when IO occurs/completes.</p>
+          <pre class='fragment'><code>var request = new http.IncomingMessage(/* ... */);
+var response = new http.ServerResponse(/* ... */);
+listener(request, response);</code></pre>
+          <p class='fragment'>Repeat</p>
+          <pre class='fragment'><code>function listener(request, response) {
+  response.end("Hello world!"); /* <- request work */
+} </code></pre>
+        </section>
+
+        <section>
+          <h1>Modules</h1>
+        </section>
+
+        <section>
+          <h2>Module basics</h2>
+          <aside class='notes'>
+            <p>Own closure</p>
+            <p>exports</p>
+            <p>module.exports</p>
+          </aside>
+          <div class='fragment'>
+            <pre style='width:48%; float: left;'><code>/* server.js */
+var http = require('http');
+var myModule = require('./my-module');
+
+var server = http.createServer(
+  myModule.serveSource
+);
+server.listen(1337);</code></pre>
+            <pre style='width:48%; float: right;'><code>/* my-module.js */
+var fs = require('graceful-fs');
+
+function listener(request, response) {
+  function send(err, contents) {
+    if (err) {
+      console.error(err);
+      response.writeHead(500);
+      response.end("ERROR");
+    } else {
+      response.end(contents);
+    }
+  }
+  fs.readFile(
+    require.main.filename,
+    send
+  );
+}
+
+exports.serveSource = listener;</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>npm - node packaged modules</h2>
+          <p>Comes with Node.js nowadays</p>
+          <p>Search: <code>npm search graceful-fs</code></p>
+          <p class='fragment'>Install: <code>npm install grafeful-fs coffee-script</code></p>
+          <p class='fragment'>Install globally: <code>[sudo] npm install -g nodemon</code></p>
+          <p class='fragment'>Installs to <code>node_modules</code></p>
+          <p class='fragment'>Include: <code>var fs = require('graceful-fs');</code></p>
+          <p class='fragment'>Uninstall: <code>npm uninstall grafeful-fs</code></p>
+        </section>
+
+        <section>
+          <h1>Debugging</h1>
+        </section>
+
+        <section>
+          <h2>node-inspector</h2>
+          <pre><code>npm install -g node-inspector</code></pre>
+          <pre><code>node --debug server.js</code></pre>
+          <pre><code>node-inspector &</code></pre>
+          <p><a href="http://127.0.0.1:8080/debug?port=5858" target="_blank">http://127.0.0.1:8080/debug?port=5858</a> in Chrome</p>
+          <p class='fragment'>Select <code>my-module.js</code> on the left</p>
+          <p class='fragment'>Add a breakpoint to <code>response.send(contents);</code></p>
+          <p class='fragment'>Load your server (http://localhost:1337/)</p>
+          <p class='fragment'>Now edit the code!</p>
         </section>
 
         <section>
@@ -280,8 +409,10 @@ Percentage of the requests served within a certain time (ms)
         </section>
 
         <section>
-          <h2>Callback hell</h2>
+          <h1>Callback hell</h1>
+          <h3><a href="http://callbackhell.com/">callbackhell.com</a></h3>
         </section>
+
 
         <section>
           <h2>Nodecopter modules</h2>
