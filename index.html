@@ -130,22 +130,35 @@ undefined
 
         <section>
           <h3>Classes</h3>
+          <p><em>Please follow along in the REPL:</em></p>
           <pre><code>function Animal() {}</code></pre>
+          <pre class='fragment'><code>var a = new Animal();</code></pre>
           <pre class='fragment'><code>Animal.prototype.getType = function() {
   return 'an animal';
 }</code></pre>
           <pre class='fragment'><code>Animal.prototype.announceSelf = function() {
   console.log("I am "+this.getType());
 }</code></pre>
-          <pre class='fragment'><code>var a = new Animal();
-a.announceSelf();</code></pre>
+          <pre class='fragment'><code>a.announceSelf(); // I am an animal</code></pre>
+        </section>
+
+        <section>
+          <h3>Classes</h3>
           <pre class='fragment'><code>function Cat() {}</code></pre>
           <pre class='fragment'><code>Cat.prototype = new Animal();</code></pre>
           <pre class='fragment'><code>Cat.prototype.getType = function() {
   return 'a cat';
 }</code></pre>
           <pre class='fragment'><code>var c = new Cat();
-c.announceSelf();</code></pre>
+c.announceSelf(); // I am a cat</code></pre>
+          <pre class='fragment'><code>var c2 = new Cat();
+c2.getType = function(){ return 'a beautiful cat'; }
+c2.announceSelf(); // I am a beautiful cat</code></pre>
+          <pre class='fragment'><code>var c3po = new Cat();
+c3po.getType = function(){ return 'a robotic cat'; }
+c3po.announceSelf(); // I am a robotic cat</code></pre>
+          <pre class='fragment'><code>c.announceSelf(); // I am a cat
+a.announceSelf(); // I am an animal</code></pre>
         </section>
 
         <section>
