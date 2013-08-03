@@ -59,16 +59,16 @@
           <p>
             Get the latest stable version of Node from <a href="http://nodejs.org/download/" target="assistant">nodejs.org/download</a> and install it.
           </p>
-          <p>Mac: <code>brew install node</code></p>
-          <p>Linux: <code>[sudo] tar zxf node-*.tar.gz --strip-components=1 -C /usr/local</code></p>
-          <pre><code>$ uname -a # Linux .... i686 &lt; 32bit or something64 &lt; 64bit</code></pre>
+          <p>Mac: <code class="language-bash">brew install node</code></p>
+          <p>Linux: <code class="language-bash">[sudo] tar zxf node-*.tar.gz --strip-components=1 -C /usr/local</code></p>
+          <pre><code class="language-bash">$ uname -a # Linux .... i686 &lt; 32bit or something64 &lt; 64bit</code></pre>
           <p><br /></p>
-          <p>Once installed, run <code>node</code> in the command line:</p>
-          <pre><code>$ node
+          <p>Once installed, run <code class="language-bash">node</code> in the command line:</p>
+          <pre><code class="language-bash">$ node
 &gt; 1+2
 3
 &gt; ^D</code></pre>
-          <p><em>You may need to update your <code>$PATH</code> so it can find node</em></p>
+          <p><em>You may need to update your <code class="language-bash">$PATH</code> so it can find node</em></p>
 
           <aside class='notes'>
             What is node?
@@ -84,11 +84,11 @@
         <section>
           <h2>Hello World!</h2>
           <p>Create a folder somewhere for this workshop.</p>
-          <pre><code>cd; mkdir node-workshop; cd !$</code></pre>
-          <p>Add the following to a new file <code>hello-world.js</code></p>
-          <p><pre><code>console.log("Hello world!");</code></pre></p>
+          <pre><code class="language-bash">cd; mkdir node-workshop; cd !$</code></pre>
+          <p>Add the following to a new file <code class="language-bash">hello-world.js</code></p>
+          <p><pre><code class="language-javascript">console.log("Hello world!");</code></pre></p>
           <p>And then run it:</p>
-          <p><pre><code>$ node hello-world.js
+          <p><pre><code class="language-bash">$ node hello-world.js
 Hello world!
 $ </code></pre></p>
         </section>
@@ -96,7 +96,7 @@ $ </code></pre></p>
         <section>
           <h2>Hello REPL!</h2>
           <h3>Read-Eval-Print-Loop</h3>
-          <p><pre><code>$ node
+          <p><pre><code class="language-bash">$ node
 &gt; console.log("Hello world!");
 Hello world!
 undefined
@@ -113,68 +113,68 @@ undefined
 
         <section>
           <h3>Super Quick Summary</h3>
-          <pre class='fragment'><code>/* Variables  */ var one = 1;</code></pre>
-          <pre class='fragment'><code>/* Objects    */ var obj = {}; obj.property = one;</code></pre>
-          <pre class='fragment'><code>/* Arrays     */ var arr = [one, obj];</code></pre>
-          <pre class='fragment'><code>/* Primatives */ var prims = [-1.3, "Str", true, null, undefined]; </code></pre>
-          <pre class='fragment'><code>/* Buffers    */ var b = new Buffer("Hello world!");
+          <pre class='fragment'><code class="language-javascript">/* Variables  */ var one = 1;</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Objects    */ var obj = {}; obj.property = one;</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Arrays     */ var arr = [one, obj];</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Primatives */ var prims = [-1.3, "Str", true, null, undefined]; </code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Buffers    */ var b = new Buffer("Hello world!");
                  b.toString('base64'); /* or hex or utf8 or ... */</code></pre>
-          <pre class='fragment'><code>/* Undefined  */ var v; if (v === undefined) { console.log("Careful"); } </code></pre>
-          <pre class='fragment'><code>/* typeof     */ if (typeof v === 'undefined') { console.log("Good"); } </code></pre>
-          <pre class='fragment'><code>/* Accessing  */ console.log(arr[1]['property']);</code></pre>
-          <pre class='fragment'><code>/* Concat     */ console.log("Join " + val + " and " + 3.03);                    // Fix code colouring </code></pre>
-          <pre class='fragment'><code>/* Functions  */ function myFunc(param) { console.log("Got: "+param); }</code></pre>
-          <pre class='fragment'><code>/* 1st class  */ function seven(fn) { fn(7); }; seven(myFunc);</code></pre>
-          <pre class='fragment'><code>/* Anonymous  */ seven(function(nr) { console.log(nr * nr); }); </code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Undefined  */ var v; if (v === undefined) { console.log("Careful"); } </code></pre>
+          <pre class='fragment'><code class="language-javascript">/* typeof     */ if (typeof v === 'undefined') { console.log("Good"); } </code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Accessing  */ console.log(arr[1]['property']);</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Concat     */ console.log("Join " + val + " and " + 3.03);                    // Fix code colouring </code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Functions  */ function myFunc(param) { console.log("Got: "+param); }</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* 1st class  */ function seven(fn) { fn(7); }; seven(myFunc);</code></pre>
+          <pre class='fragment'><code class="language-javascript">/* Anonymous  */ seven(function(nr) { console.log(nr * nr); }); </code></pre>
         </section>
 
         <section>
           <h3>Classes</h3>
           <p><em>Please follow along in the REPL:</em></p>
-          <pre><code>function Animal() {}</code></pre>
-          <pre class='fragment'><code>var a = new Animal();</code></pre>
-          <pre class='fragment'><code>Animal.prototype.getType = function() {
+          <pre><code class="language-javascript">function Animal() {}</code></pre>
+          <pre class='fragment'><code class="language-javascript">var a = new Animal();</code></pre>
+          <pre class='fragment'><code class="language-javascript">Animal.prototype.getType = function() {
   return 'an animal';
 }</code></pre>
-          <pre class='fragment'><code>Animal.prototype.announceSelf = function() {
+          <pre class='fragment'><code class="language-javascript">Animal.prototype.announceSelf = function() {
   console.log("I am "+this.getType());
 }</code></pre>
-          <pre class='fragment'><code>a.announceSelf(); // I am an animal</code></pre>
+          <pre class='fragment'><code class="language-javascript">a.announceSelf(); // I am an animal</code></pre>
         </section>
 
         <section>
           <h3>Classes</h3>
-          <pre class='fragment'><code>function Cat() {}</code></pre>
-          <pre class='fragment'><code>Cat.prototype = new Animal();</code></pre>
-          <pre class='fragment'><code>Cat.prototype.getType = function() {
+          <pre class='fragment'><code class="language-javascript">function Cat() {}</code></pre>
+          <pre class='fragment'><code class="language-javascript">Cat.prototype = new Animal();</code></pre>
+          <pre class='fragment'><code class="language-javascript">Cat.prototype.getType = function() {
   return 'a cat';
 }</code></pre>
-          <pre class='fragment'><code>var c = new Cat();
+          <pre class='fragment'><code class="language-javascript">var c = new Cat();
 c.announceSelf(); // I am a cat</code></pre>
-          <pre class='fragment'><code>var c2 = new Cat();
+          <pre class='fragment'><code class="language-javascript">var c2 = new Cat();
 c2.getType = function(){ return 'a beautiful cat'; }
 c2.announceSelf(); // I am a beautiful cat</code></pre>
-          <pre class='fragment'><code>var c3po = new Cat();
+          <pre class='fragment'><code class="language-javascript">var c3po = new Cat();
 c3po.getType = function(){ return 'a robotic cat'; }
 c3po.announceSelf(); // I am a robotic cat</code></pre>
-          <pre class='fragment'><code>c.announceSelf(); // I am a cat
+          <pre class='fragment'><code class="language-javascript">c.announceSelf(); // I am a cat
 a.announceSelf(); // I am an animal</code></pre>
         </section>
 
         <section>
           <h3>Scope and closures</h3>
-          <pre class='fragment'><code>var a = 1;
+          <pre class='fragment'><code class="language-javascript">var a = 1;
 function logA() {
   console.log("The value of 'a' is " + a);
 }
 logA(); // The value of 'a' is 1</code></pre>
-          <pre class='fragment'><code>function defB() {
+          <pre class='fragment'><code class="language-javascript">function defB() {
   var b = 3;
   console.log(b);
 }
 defB(); // 3
 b // ReferenceError</code></pre>
-          <pre class='fragment'><code>function defC() {
+          <pre class='fragment'><code class="language-javascript">function defC() {
   var c = 5;
   function outputC() {
     console.log("The value of c is " + c);
@@ -188,7 +188,7 @@ outputC // ReferenceError</code></pre>
 
         <section>
           <h3>Anonymous closures</h3>
-          <pre class='fragment'><code>(function() {
+          <pre class='fragment'><code class="language-javascript">(function() {
   var c = 5;
   function outputC() {
     console.log("The value of c is " + c);
@@ -196,14 +196,14 @@ outputC // ReferenceError</code></pre>
   outputC();
   this.logC = outputC;
 })();</code></pre>
-          <pre class='fragment'><code>logC(); // The value of c is 5
+          <pre class='fragment'><code class="language-javascript">logC(); // The value of c is 5
 c // ReferenceError
 outputC // ReferenceError</code></pre>
         </section>
 
         <section>
           <h2>this</h2>
-          <pre><code>function Animal() {}
+          <pre><code class="language-javascript">function Animal() {}
 var a = new Animal();
 Animal.prototype.getType = function() {
   return 'an animal';
@@ -213,13 +213,13 @@ Animal.prototype.announceSelf = function() {
 }
 var a = new Animal();
 a.announceSelf(); // I am an animal</code></pre>
-          <pre class='fragment'><code>var z = {
+          <pre class='fragment'><code class="language-javascript">var z = {
   getType: function() {
     return 'something else entirely';
   }
 };
 a.announceSelf.apply(z); // I am something else entirely</code></pre>
-          <pre class='fragment'><code>Animal.prototype.announceSelf.apply(z); // I am something else entirely
+          <pre class='fragment'><code class="language-javascript">Animal.prototype.announceSelf.apply(z); // I am something else entirely
 Animal.prototype.announceSelf === a.announceSelf // true</code></pre>
         </section>
 
@@ -229,8 +229,8 @@ Animal.prototype.announceSelf === a.announceSelf // true</code></pre>
 
         <section>
           <h2>Hello Internet!</h2>
-          <p>Enter the following into <code>server.js</code></p>
-          <p><pre><code>var http = require('http');
+          <p>Enter the following into <code class="language-bash">server.js</code></p>
+          <p><pre><code class="language-javascript">var http = require('http');
 
 function listener(request, response) {
   response.end("Hello world!");
@@ -239,14 +239,14 @@ function listener(request, response) {
 var server = http.createServer(listener);
 server.listen(1337);</code></pre></p>
           <p>Then run it:</p>
-          <p><pre><code>$ node server.js</code></pre></p>
+          <p><pre><code class="language-bash">$ node server.js</code></pre></p>
           <p>Open <a href="http://localhost:1337" target="assistant">http://localhost:1337</a></p>
         </section>
 
         <section>
           <h2>Exhibitionist</h2>
           <p>Let's share our own source code with the world:</p>
-          <p><pre><code>var http = require('http');
+          <p><pre><code class="language-javascript">var http = require('http');
 var fs = require('fs');
 
 function listener(request, response) {
@@ -264,13 +264,13 @@ function listener(request, response) {
 
 var server = http.createServer(listener);
 server.listen(1337);</code></pre></p>
-          <p class='fragment'>But this means if we have a traffic surge we'll get <code>EMFILE</code> - too many files open.</p>
+          <p class='fragment'>But this means if we have a traffic surge we'll get <code class="language-javascript">EMFILE</code> - too many files open.</p>
         </section>
 
         <section>
           <h2><span style='color:green'>Graceful</span> Exhibitionist</h2>
           <p>Let's <span style='color:green'>gracefully</span> share our own source code with the world:</p>
-          <p><pre><code>var http = require('http');
+          <p><pre><code class="language-javascript">var http = require('http');
 //var fs = require('fs');
 var fs = require('graceful-fs'); // npm install graceful-fs
 
@@ -294,7 +294,7 @@ server.listen(1337);</code></pre></p>
 
         <section>
           <h2>Preloading</h2>
-<p><pre><code>var http = require('http');
+<p><pre><code class="language-javascript">var http = require('http');
 var fs = require('graceful-fs');
 var fileContents;
 
@@ -319,7 +319,7 @@ fs.readFile(require.main.filename, read);</code></pre></p>
 
         <section>
           <h2>Benchmark (snipped)</h2>
-          <p><pre><code>$ ab -n 10000 -c 100  http://127.0.0.1:1337/
+          <p><pre><code class="language-bash">$ ab -n 10000 -c 100  http://127.0.0.1:1337/
 Document Length:        388 bytes
 Time taken for tests:   1.395 seconds
 Failed requests:        0
@@ -376,18 +376,18 @@ Percentage of the requests served within a certain time (ms)
         <section>
           <h2>Single thread for JavaScript</h2>
           <p class='fragment'>Your code should request work, optional callback.</p>
-          <pre class='fragment'><code>var http = require('http');
+          <pre class='fragment'><code class="language-javascript">var http = require('http');
 function listener(request, response) {/* ... */}
 var server = http.createServer(listener /* <- callback */);
 server.listen(1337); /* <- request work */</code></pre>
           <p class='fragment'>Background thread pool handles work.</p>
           <pre class='fragment'><code>GET / HTTP/1.0</code></pre>
           <p class='fragment'>Node triggers callback when IO occurs/completes.</p>
-          <pre class='fragment'><code>var request = new http.IncomingMessage(/* ... */);
+          <pre class='fragment'><code class="language-javascript">var request = new http.IncomingMessage(/* ... */);
 var response = new http.ServerResponse(/* ... */);
 listener(request, response);</code></pre>
           <p class='fragment'>Repeat</p>
-          <pre class='fragment'><code>function listener(request, response) {
+          <pre class='fragment'><code class="language-javascript">function listener(request, response) {
   response.end("Hello world!"); /* <- request work */
 } </code></pre>
         </section>
@@ -404,7 +404,7 @@ listener(request, response);</code></pre>
             <p>module.exports</p>
           </aside>
           <div class='fragment'>
-            <pre style='width:48%; float: left;'><code>/* server.js */
+            <pre style='width:48%; float: left;'><code class="language-javascript">/* server.js */
 var http = require('http');
 var myModule = require('./my-module');
 
@@ -412,7 +412,7 @@ var server = http.createServer(
   myModule.serveSource
 );
 server.listen(1337);</code></pre>
-            <pre style='width:48%; float: right;'><code>/* my-module.js */
+            <pre style='width:48%; float: right;'><code class="language-javascript">/* my-module.js */
 var fs = require('graceful-fs');
 
 function listener(request, response) {
@@ -438,34 +438,34 @@ exports.serveSource = listener;</code></pre>
         <section>
           <h2>npm - node packaged modules</h2>
           <p>Comes with Node.js nowadays</p>
-          <p>Search: <code>npm search graceful-fs</code></p>
-          <p class='fragment'>Install: <code>npm install grafeful-fs coffee-script</code></p>
-          <p class='fragment'>Install globally: <code>[sudo] npm install -g nodemon</code></p>
-          <p class='fragment'>Installs to <code>node_modules</code></p>
-          <p class='fragment'>Include: <code>var fs = require('graceful-fs');</code></p>
-          <p class='fragment'>Uninstall: <code>npm uninstall grafeful-fs</code></p>
+          <p>Search: <code class="language-bash">npm search graceful-fs</code></p>
+          <p class='fragment'>Install: <code class="language-bash">npm install grafeful-fs coffee-script</code></p>
+          <p class='fragment'>Install globally: <code class="language-bash">[sudo] npm install -g nodemon</code></p>
+          <p class='fragment'>Installs to <code class="language-bash">node_modules</code></p>
+          <p class='fragment'>Include: <code class="language-javascript">var fs = require('graceful-fs');</code></p>
+          <p class='fragment'>Uninstall: <code class="language-bash">npm uninstall grafeful-fs</code></p>
         </section>
 
         <section>
           <h2>npm tips</h2>
-          <p>Create a package.json interactively: <code>npm init</code></p>
-          <p class='fragment'>Prevent accidental publishing to npm: <code>"private":true</code></p>
-          <p class='fragment'>Install and save dependency: <code>npm install --save express</code></p>
-          <p class='fragment'>Save by default: <code>npm config set save true</code></p>
-          <p class='fragment'>Jump to documentation for a module: <code>npm docs coffee-script</code></p>
+          <p>Create a package.json interactively: <code class="language-bash">npm init</code></p>
+          <p class='fragment'>Prevent accidental publishing to npm: <code class="language-javascript">"private":true</code></p>
+          <p class='fragment'>Install and save dependency: <code class="language-bash">npm install --save express</code></p>
+          <p class='fragment'>Save by default: <code class="language-bash">npm config set save true</code></p>
+          <p class='fragment'>Jump to documentation for a module: <code class="language-bash">npm docs coffee-script</code></p>
         </section>
 
         <section>
           <h2>more npm tips</h2>
           <p>Define scripts:</p>
-          <pre><code>"scripts": {
+          <pre><code class="language-javascript">"scripts": {
   "truth": "echo Node.js rocks",
   "test": "echo All tests pass",
   "start": "node index.js"
 }</code></pre>
-          <p>Run tests: <code>npm test</code></p>
-          <p>Run other scripts: <code>npm run truth</code></p>
-          <p>Start the main app: <code>npm start</code></p>
+          <p>Run tests: <code class="language-bash">npm test</code></p>
+          <p>Run other scripts: <code class="language-bash">npm run truth</code></p>
+          <p>Start the main app: <code class="language-bash">npm start</code></p>
         </section>
 
         <section>
@@ -474,12 +474,12 @@ exports.serveSource = listener;</code></pre>
 
         <section>
           <h2>node-inspector</h2>
-          <pre><code>npm install -g node-inspector</code></pre>
-          <pre><code>node --debug server.js</code></pre>
-          <pre><code>node-inspector &</code></pre>
+          <pre><code class="language-bash">npm install -g node-inspector</code></pre>
+          <pre><code class="language-bash">node --debug server.js</code></pre>
+          <pre><code class="language-bash">node-inspector &</code></pre>
           <p><a href="http://127.0.0.1:8080/debug?port=5858" target="assistant">http://127.0.0.1:8080/debug?port=5858</a> in Chrome</p>
-          <p class='fragment'>Select <code>my-module.js</code> on the left</p>
-          <p class='fragment'>Add a breakpoint to <code>response.send(contents);</code></p>
+          <p class='fragment'>Select <code class="language-javascript">my-module.js</code> on the left</p>
+          <p class='fragment'>Add a breakpoint to <code class="language-javascript">response.send(contents);</code></p>
           <p class='fragment'>Load your server (http://localhost:1337/)</p>
           <p class='fragment'>Now edit the code!</p>
         </section>
@@ -518,6 +518,7 @@ exports.serveSource = listener;</code></pre>
         progress: true,
         history: true,
         center: true,
+        rollingLinks: false,
 
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
         transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
