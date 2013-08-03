@@ -385,6 +385,28 @@ exports.serveSource = listener;</code></pre>
         </section>
 
         <section>
+          <h2>npm tips</h2>
+          <p>Create a package.json interactively: <code>npm init</code></p>
+          <p class='fragment'>Prevent accidental publishing to npm: <code>"private":true</code></p>
+          <p class='fragment'>Install and save dependency: <code>npm install --save express</code></p>
+          <p class='fragment'>Save by default: <code>npm config set save true</code></p>
+          <p class='fragment'>Jump to documentation for a module: <code>npm docs coffee-script</code></p>
+        </section>
+
+        <section>
+          <h2>more npm tips</h2>
+          <p>Define scripts:</p>
+          <pre><code>"scripts": {
+  "truth": "echo Node.js rocks",
+  "test": "echo All tests pass",
+  "start": "node index.js"
+}</code></pre>
+          <p>Run tests: <code>npm test</code></p>
+          <p>Run other scripts: <code>npm run truth</code></p>
+          <p>Start the main app: <code>npm start</code></p>
+        </section>
+
+        <section>
           <h1>Debugging</h1>
         </section>
 
