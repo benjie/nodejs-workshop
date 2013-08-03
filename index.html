@@ -60,8 +60,15 @@
             Get the latest stable version of Node from <a href="http://nodejs.org/download/" target="assistant">nodejs.org/download</a> and install it.
           </p>
           <p>Mac: <code>brew install node</code></p>
-          <p>Linux: <code>tar zxf node-*.tar.gz --strip-components=1 -C /usr/local</code></p>
-          <p>You may need to update your <code>$PATH</code> so it can find node</p>
+          <p>Linux: <code>[sudo] tar zxf node-*.tar.gz --strip-components=1 -C /usr/local</code></p>
+          <pre><code>$ uname -a # Linux .... i686 &lt; 32bit or something64 &lt; 64bit</code></pre>
+          <p><br /></p>
+          <p>Once installed, run <code>node</code> in the command line:</p>
+          <pre><code>$ node
+&gt; 1+2
+3
+&gt; ^D</code></pre>
+          <p><em>You may need to update your <code>$PATH</code> so it can find node</em></p>
 
           <aside class='notes'>
             What is node?
