@@ -163,28 +163,68 @@ a.announceSelf(); // I am an animal</code></pre>
 
         <section>
           <h3>Scope and closures</h3>
-          <pre><code>var a = 1;
+          <pre class='fragment'><code>var a = 1;
 function logA() {
-  console.log("a = "+a);
-  var b = a;
+  console.log("The value of 'a' is " + a);
 }
-logA(); // a = 1</code></pre>
-          <pre class='fragment'><code>function logB() {
-  console.log("typeof b = "+(typeof b));
-  a = 3;
+logA(); // The value of 'a' is 1</code></pre>
+          <pre class='fragment'><code>function defB() {
+  var b = 3;
+  console.log(b);
 }
-logB(); // typeof b = undefined
-logA(); // a = 3</code></pre>
+defB(); // 3
+b // ReferenceError</code></pre>
+          <pre class='fragment'><code>function defC() {
+  var c = 5;
+  function outputC() {
+    console.log("The value of c is " + c);
+  }
+  outputC();
+}
+defC(); // The value of c is 5
+c // ReferenceError
+outputC // ReferenceError</code></pre>
+        </section>
+
+        <section>
+          <h3>Anonymous closures</h3>
           <pre class='fragment'><code>(function() {
   var c = 5;
-  function logC() {
-    console.log("c = "+c);
+  function outputC() {
+    console.log("The value of c is " + c);
   }
-  logC(); // c = 5
-  this.exportedLogC = logC;
+  outputC();
+  this.logC = outputC;
 })();</code></pre>
-          <pre class='fragment'><code>exportedLogC(); // c = 5
-console.log(typeof c); // undefined</code></pre>
+          <pre class='fragment'><code>logC(); // The value of c is 5
+c // ReferenceError
+outputC // ReferenceError</code></pre>
+        </section>
+
+        <section>
+          <h2>this</h2>
+          <pre><code>function Animal() {}
+var a = new Animal();
+Animal.prototype.getType = function() {
+  return 'an animal';
+}
+Animal.prototype.announceSelf = function() {
+  console.log("I am "+this.getType());
+}
+var a = new Animal();
+a.announceSelf(); // I am an animal</code></pre>
+          <pre class='fragment'><code>var z = {
+  getType: function() {
+    return 'something else entirely';
+  }
+};
+a.announceSelf.apply(z); // I am something else entirely</code></pre>
+          <pre class='fragment'><code>Animal.prototype.announceSelf.apply(z); // I am something else entirely
+Animal.prototype.announceSelf === a.announceSelf // true</code></pre>
+        </section>
+
+        <section>
+          <h1>Node.js</h1>
         </section>
 
         <section>
