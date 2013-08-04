@@ -232,6 +232,36 @@ Animal.prototype.announceSelf.apply(z); // I am something else entirely</code></
         </section>
 
         <section>
+          <h2>Arguments, apply</h2>
+          <pre><code>function sum() {
+  var total = 0;
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    total += arguments[i];
+  }
+  return total;
+};</code></pre>
+          <pre class='fragment'><code>sum([1,2,3,4,5,6]); // 21</code></pre>
+          <pre class='fragment'><code>var array = [984, 27, 629, 1024, 256, 42];</code></pre>
+          <pre class='fragment'><code>sum.apply(null, array); // 2962</code></pre>
+        </section>
+
+        <section>
+          <h2>Call</h2>
+          <pre><code class="language-javascript">var myObject = {};</code></pre>
+          <pre><code class="language-javascript">(function(multiplier) {
+  var c = 5 * multiplier;
+  function outputC() {
+    console.log("The value of 'c' is " + c);
+  }
+  outputC();
+  this.logC = outputC;
+}).call(myObject, 20)</code></pre>
+          <pre class='fragment'><code class="language-javascript">logC(); // ReferenceError</code></pre>
+          <pre class='fragment'><code class="language-javascript">myObject.logC(); // The value of 'c' is 100</code></pre>
+        </section>
+
+
+        <section>
           <h1>Node.js - runloop</h1>
         </section>
 
