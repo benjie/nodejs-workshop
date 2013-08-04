@@ -170,24 +170,25 @@ a.announceSelf(); // I am an animal</code></pre>
         <section>
           <h3>Scope and closures</h3>
           <pre class='fragment'><code class="language-javascript">var a = 1;
-function logA() {
+function fnA() {
   console.log("The value of 'a' is " + a);
 }
-logA(); // The value of 'a' is 1</code></pre>
-          <pre class='fragment'><code class="language-javascript">function defB() {
+fnA(); // The value of 'a' is 1
+a // 1</code></pre>
+          <pre class='fragment'><code class="language-javascript">function fnB() {
   var b = 3;
-  console.log(b);
+  console.log("The value of 'b' is " +b);
 }
-defB(); // 3
+fnB(); // The value of 'b' is 3
 b // ReferenceError</code></pre>
-          <pre class='fragment'><code class="language-javascript">function defC() {
+          <pre class='fragment'><code class="language-javascript">function fnC() {
   var c = 5;
   function outputC() {
     console.log("The value of c is " + c);
   }
   outputC();
 }
-defC(); // The value of c is 5
+fnC(); // The value of c is 5
 c // ReferenceError
 outputC // ReferenceError</code></pre>
         </section>
@@ -224,9 +225,10 @@ a.announceSelf(); // I am an animal</code></pre>
     return 'something else entirely';
   }
 };
-a.announceSelf.apply(z); // I am something else entirely</code></pre>
-          <pre class='fragment'><code class="language-javascript">Animal.prototype.announceSelf.apply(z); // I am something else entirely
-Animal.prototype.announceSelf === a.announceSelf // true</code></pre>
+          </code></pre>
+          <pre class='fragment'><code class="language-javascript">a.announceSelf.apply(z); // I am something else entirely
+Animal.prototype.announceSelf.apply(z); // I am something else entirely</code></pre>
+          <pre class='fragment'><code class="language-javascript">Animal.prototype.announceSelf === a.announceSelf // true</code></pre>
         </section>
 
         <section>
