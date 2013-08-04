@@ -194,6 +194,15 @@ outputC // ReferenceError</code></pre>
         </section>
 
         <section>
+          <pre><code class="language-javascript" data-trim>
+/* Same */  function fnC() {
+/*      */    var c = 5;
+/*      */    function outputC() {
+/*      */      console.log("The value of c is " + c);
+/*      */    }
+/*      */    outputC();
+/*      */  }
+          </code></pre>
           <h3>Anonymous closures</h3>
           <pre class='fragment'><code class="language-javascript">(function() {
   var c = 5;
