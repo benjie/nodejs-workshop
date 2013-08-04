@@ -430,7 +430,7 @@ fs.readFile(require.main.filename, read);</code></pre>
             <p>exports</p>
             <p>module.exports</p>
           </aside>
-          <div class='fragment'>
+          <div>
             <pre style='width:48%; float: left;'><code class="language-javascript">/* server.js */
 var http = require('http');
 var myModule = require('./my-module');
@@ -439,7 +439,7 @@ var server = http.createServer(
   myModule.serveSource
 );
 server.listen(1337);</code></pre>
-            <pre style='width:48%; float: right;'><code class="language-javascript">/* my-module.js */
+            <pre style='width:48%; float: right;' class='fragment'><code class="language-javascript">/* my-module.js */
 var fs = require('graceful-fs');
 
 function listener(request, response) {
