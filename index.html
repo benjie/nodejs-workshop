@@ -248,14 +248,14 @@ Animal.prototype.announceSelf.apply(z); // I am something else entirely</code></
         <section>
           <h2>Call</h2>
           <pre><code class="language-javascript">var myObject = {};</code></pre>
-          <pre><code class="language-javascript">(function(multiplier) {
-  var c = 5 * multiplier;
+          <pre><code class="language-javascript">(function(/*>*/multiplier/*<*/) {
+  var c = 5 /*>*/* multiplier/*<*/;
   function outputC() {
     console.log("The value of 'c' is " + c);
   }
   outputC();
   this.logC = outputC;
-}).call(myObject, 20)</code></pre>
+})/*>*/.call(myObject, 20)/*<*/</code></pre>
           <pre class='fragment'><code class="language-javascript">logC(); // ReferenceError</code></pre>
           <pre class='fragment'><code class="language-javascript">myObject.logC(); // The value of 'c' is 100</code></pre>
         </section>
