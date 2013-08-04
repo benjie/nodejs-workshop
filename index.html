@@ -395,7 +395,8 @@ server.listen(1337);</code></pre></p>
 
         <section>
           <h2>Preloading</h2>
-<p><pre><code class="language-javascript">var http = require('http');
+          <p>Save <code>server.js</code> as <code>server.preloading.js</code></p>
+          <pre><code class="language-javascript">var http = require('http');
 var fs = require('graceful-fs');
 var fileContents;
 
@@ -415,7 +416,7 @@ function read(err, contents) {
   }
 }
 
-fs.readFile(require.main.filename, read);</code></pre></p>
+fs.readFile(require.main.filename, read);</code></pre>
         </section>
 
         <section>
