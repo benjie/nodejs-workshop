@@ -322,7 +322,41 @@ listener(request, response);</code></pre>
         </section>
 
         <section>
-          <h1>Asynchronous programming demo</h1>
+          <h1>npm</h1>
+          <h2>Node Package Manager</h2>
+        </section>
+
+        <section>
+          <h2>npm - node package manager</h2>
+          <p>Comes with Node.js nowadays</p>
+          <p>Search: <code class="language-bash">npm search graceful-fs</code></p>
+          <p class='fragment'>Install: <code class="language-bash">npm install grafeful-fs coffee-script</code></p>
+          <p class='fragment'>Install globally: <code class="language-bash">[sudo] npm install -g nodemon</code></p>
+          <p class='fragment'>Installs to <code class="language-bash">node_modules</code></p>
+          <p class='fragment'>Include: <code class="language-javascript">var fs = require('graceful-fs');</code></p>
+          <p class='fragment'>Uninstall: <code class="language-bash">npm uninstall grafeful-fs</code></p>
+        </section>
+
+        <section>
+          <h2>npm tips</h2>
+          <p>Create a package.json interactively: <code class="language-bash">npm init</code></p>
+          <p class='fragment'>Prevent accidental publishing to npm: <code class="language-javascript">"private":true</code></p>
+          <p class='fragment'>Install and save dependency: <code class="language-bash">npm install --save express</code></p>
+          <p class='fragment'>Save by default: <code class="language-bash">npm config set save true</code></p>
+          <p class='fragment'>Jump to documentation for a module: <code class="language-bash">npm docs coffee-script</code></p>
+        </section>
+
+        <section>
+          <h2>more npm tips</h2>
+          <p>Define scripts:</p>
+          <pre><code class="language-javascript">"scripts": {
+  "truth": "echo Node.js rocks",
+  "test": "echo All tests pass",
+  "start": "node index.js"
+}</code></pre>
+          <p>Run tests: <code class="language-bash">npm test</code></p>
+          <p>Run other scripts: <code class="language-bash">npm run truth</code></p>
+          <p>Start the main app: <code class="language-bash">npm start</code></p>
         </section>
 
         <section>
@@ -421,6 +455,23 @@ fs.readFile(require.main.filename, read);</code></pre>
         </section>
 
         <section>
+          <h1>Debugging</h1>
+          <h2>node-inspector</h2>
+          <pre><code class="language-bash">npm install -g node-inspector</code></pre>
+          <pre><code class="language-bash">node --debug server.js</code></pre>
+          <pre><code class="language-bash">node-inspector &</code></pre>
+          <p><a href="http://127.0.0.1:8080/debug?port=5858" target="assistant">http://127.0.0.1:8080/debug?port=5858</a> in Chrome</p>
+          <p class='fragment'>Select <code class="language-javascript">server.js</code> on the left</p>
+          <p class='fragment'>Add a breakpoint to <code class="language-javascript">response.send(contents);</code></p>
+          <p class='fragment'>Load your server (http://localhost:1337/)</p>
+          <p class='fragment'>Now edit the code!</p>
+        </section>
+
+        <section>
+          <h1>Asynchronous programming demo</h1>
+          <p>Create new file, <code>async.js</code></p>
+        </section>
+        <section>
           <h1>Modules</h1>
         </section>
 
@@ -461,55 +512,6 @@ function listener(request, response) {
 
 exports.serveSource = listener;</code></pre>
           </div>
-        </section>
-
-        <section>
-          <h2>npm - node package manager</h2>
-          <p>Comes with Node.js nowadays</p>
-          <p>Search: <code class="language-bash">npm search graceful-fs</code></p>
-          <p class='fragment'>Install: <code class="language-bash">npm install grafeful-fs coffee-script</code></p>
-          <p class='fragment'>Install globally: <code class="language-bash">[sudo] npm install -g nodemon</code></p>
-          <p class='fragment'>Installs to <code class="language-bash">node_modules</code></p>
-          <p class='fragment'>Include: <code class="language-javascript">var fs = require('graceful-fs');</code></p>
-          <p class='fragment'>Uninstall: <code class="language-bash">npm uninstall grafeful-fs</code></p>
-        </section>
-
-        <section>
-          <h2>npm tips</h2>
-          <p>Create a package.json interactively: <code class="language-bash">npm init</code></p>
-          <p class='fragment'>Prevent accidental publishing to npm: <code class="language-javascript">"private":true</code></p>
-          <p class='fragment'>Install and save dependency: <code class="language-bash">npm install --save express</code></p>
-          <p class='fragment'>Save by default: <code class="language-bash">npm config set save true</code></p>
-          <p class='fragment'>Jump to documentation for a module: <code class="language-bash">npm docs coffee-script</code></p>
-        </section>
-
-        <section>
-          <h2>more npm tips</h2>
-          <p>Define scripts:</p>
-          <pre><code class="language-javascript">"scripts": {
-  "truth": "echo Node.js rocks",
-  "test": "echo All tests pass",
-  "start": "node index.js"
-}</code></pre>
-          <p>Run tests: <code class="language-bash">npm test</code></p>
-          <p>Run other scripts: <code class="language-bash">npm run truth</code></p>
-          <p>Start the main app: <code class="language-bash">npm start</code></p>
-        </section>
-
-        <section>
-          <h1>Debugging</h1>
-        </section>
-
-        <section>
-          <h2>node-inspector</h2>
-          <pre><code class="language-bash">npm install -g node-inspector</code></pre>
-          <pre><code class="language-bash">node --debug server.js</code></pre>
-          <pre><code class="language-bash">node-inspector &</code></pre>
-          <p><a href="http://127.0.0.1:8080/debug?port=5858" target="assistant">http://127.0.0.1:8080/debug?port=5858</a> in Chrome</p>
-          <p class='fragment'>Select <code class="language-javascript">my-module.js</code> on the left</p>
-          <p class='fragment'>Add a breakpoint to <code class="language-javascript">response.send(contents);</code></p>
-          <p class='fragment'>Load your server (http://localhost:1337/)</p>
-          <p class='fragment'>Now edit the code!</p>
         </section>
 
         <section>
