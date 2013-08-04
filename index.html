@@ -410,35 +410,6 @@ fs.readFile(require.main.filename, read);</code></pre></p>
         </section>
 
         <section>
-          <h2>Benchmark (snipped)</h2>
-          <p><pre><code class="language-bash">$ ab -n 10000 -c 100  http://127.0.0.1:1337/
-Document Length:        388 bytes
-Time taken for tests:   1.395 seconds
-Failed requests:        0
-Write errors:           0
-Requests per second:    7166.71 [#/sec] (mean)
-Time per request:       13.953 [ms] (mean)
-Time per request:       0.140 [ms] (mean, across all concurrent requests)
-
-Connection Times (ms)
-              min  mean[+/-sd] median   max
-Connect:        0    0   4.1      0     234
-Processing:     1   14  26.1     10     246
-Waiting:        1   14  26.1     10     246
-Total:          4   14  26.4     10     247
-
-Percentage of the requests served within a certain time (ms)
-  50%     10
-  66%     10
-  75%     10
-  80%     11
-  90%     13
-  95%     14
-  98%     20
-  99%    148
- 100%    247 (longest request)</code></pre></p>
-        </section>
-        <section>
           <h1>Modules</h1>
         </section>
 
