@@ -136,7 +136,6 @@ undefined
 
         <section>
           <h3>Classes</h3>
-          <p><em>Please follow along in the REPL:</em></p>
           <pre><code class="language-javascript">function Animal() {}</code></pre>
           <pre class='fragment'><code class="language-javascript">var a = new Animal();</code></pre>
           <pre class='fragment'><code class="language-javascript">Animal.prototype.getType = function() {
@@ -210,7 +209,7 @@ outputC // ReferenceError</code></pre>
     console.log("The value of c is " + c);
   }
   outputC();
-  this.logC = outputC;
+  this.logC = outputC; // Doesn't work in strict mode
 })();</code></pre>
           <pre class='fragment'><code class="language-javascript">logC(); // The value of c is 5
 c // ReferenceError
@@ -249,7 +248,7 @@ Animal.prototype.announceSelf.apply(z); // I am something else entirely</code></
   }
   return total;
 };</code></pre>
-          <pre class='fragment'><code>sum([1,2,3,4,5,6]); // 21</code></pre>
+          <pre class='fragment'><code>sum(1,2,3,4,5,6); // 21</code></pre>
           <pre class='fragment'><code>var array = [984, 27, 629, 1024, 256, 42];</code></pre>
           <pre class='fragment'><code>sum.apply(null, array); // 2962</code></pre>
         </section>
